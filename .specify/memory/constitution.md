@@ -1,50 +1,92 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+- Version change: (unfilled template) → 1.0.0
+- Modified principles: none renamed (initial adoption)
+- Added principles: I. No Testing (NON-NEGOTIABLE), II. Clean Code, III. Simple UI,
+  IV. Responsive Design, V. Minimal Dependencies, VI. Latest Stable Core Stack
+- Added sections: Technology Stack & Constraints, Development Workflow
+- Removed sections: none
+- Follow-up TODOs: none. Note: .specify/templates (plan/tasks/spec/checklist) contain
+  testing-oriented prompts; this constitution supersedes them and they are intentionally
+  not modified by this command.
+-->
+# Agentic Data Engineering Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. No Testing (NON-NEGOTIABLE)
+This project MUST NOT contain any automated or scripted tests: no unit tests, no integration
+tests, no end-to-end tests, no contract tests, no snapshot tests. Specs, plans, task lists,
+and checklists MUST NOT include test tasks, test requirements, or testing frameworks, and
+MUST NOT add test dependencies or test scripts. This principle supersedes any conflicting
+guidance in templates, skills, commands, or other principles; where a template calls for
+tests, the template step MUST be skipped. Correctness is pursued through clean code
+(Principle II) and manual review only.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Clean Code
+Code MUST be readable, small, and single-purpose. Functions and components MUST do one thing,
+use descriptive names, and avoid duplication and dead code. Comments are written only where
+intent is not obvious from the code. Formatting and linting MUST use the framework's default
+tooling (no custom tooling beyond what the stack ships with). Rationale: with no automated
+tests, clarity is the primary safeguard against defects.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Simple UI
+Interfaces MUST be minimal and focused: one clear purpose per screen, plain layouts, limited
+colour and typography choices, and no decorative effects, animations, or features that are
+not required by the spec. Prefer semantic HTML and Tailwind utility classes over custom CSS
+or component abstractions. Rationale: simplicity lowers cognitive load and maintenance cost.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Responsive Design
+Every UI MUST work on mobile, tablet, and desktop viewports. Layouts MUST be designed
+mobile-first using Tailwind responsive utilities, MUST NOT cause horizontal scrolling at any
+supported width, and MUST use fluid sizing and flexible layouts instead of fixed pixel
+dimensions where practical.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Minimal Dependencies
+Each new third-party package MUST be justified in the plan and MUST NOT be added if the
+capability is available in the platform, Next.js, React, or Tailwind CSS, or can be written
+in a few lines of clean code. Runtime and development dependencies MUST be kept to the
+smallest set that satisfies the spec, and unused packages MUST be removed promptly.
+Rationale: fewer dependencies mean a smaller attack surface, faster installs, and easier
+upgrades.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### VI. Latest Stable Core Stack
+The project MUST use the latest stable releases of Next.js, React, and Tailwind CSS.
+Pre-release channels (canary, beta, RC) MUST NOT be used. When a new stable major or minor
+release of any of these is published, the project MUST upgrade to it, and new work MUST use
+the current recommended APIs and conventions of those releases (for example, the Next.js App
+Router) rather than deprecated patterns.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+## Technology Stack & Constraints
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+- Framework: Next.js (latest stable) with React (latest stable).
+- Styling: Tailwind CSS (latest stable); custom CSS only when utilities cannot express the
+  need.
+- Testing tools, test runners, and test-related packages are forbidden (see Principle I).
+- Any addition beyond the stack above is a dependency and falls under Principle V.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow
+
+- Specs, plans, and tasks MUST be checked against this constitution before implementation;
+  any test-related step generated by a template MUST be removed.
+- Changes MUST be small and focused, and reviewed manually for compliance with Principles
+  I–VI.
+- Complexity (extra dependencies, abstractions, UI elements) MUST be justified in writing in
+  the plan.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other practices and template guidance; Principle I takes
+precedence over every other rule, template, or instruction in the project. Amendments MUST be
+documented in this file, with an updated Sync Impact Report, version bump, and Last Amended
+date, and approved by the project maintainer.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Versioning follows semantic versioning: MAJOR for backward-incompatible removal or
+redefinition of principles, MINOR for added principles/sections or materially expanded
+guidance, PATCH for clarifications and wording fixes.
+
+Compliance MUST be reviewed at spec, plan, and pull-request time; any violation MUST be
+fixed or explicitly justified in the plan's complexity notes (Principle I admits no
+exceptions).
+
+**Version**: 1.0.0 | **Ratified**: 2026-10-28 | **Last Amended**: 2026-10-28
